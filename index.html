@@ -22,6 +22,7 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
+            min-height: 100vh;
         }
         ::-webkit-scrollbar {
             width: 4px;
@@ -39,7 +40,7 @@
             padding: 0 40px;
         }
 
-        /* ===== ANIMATED BACKGROUND PARTICLES ===== */
+        /* ===== ANIMATED BACKGROUND PARTICLES (Soft & Relaxing) ===== */
         #particles-canvas {
             position: fixed;
             top: 0;
@@ -48,6 +49,19 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
+        }
+
+        /* ===== SOFT GLOW OVERLAY ===== */
+        .glow-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.03), transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(212, 175, 55, 0.02), transparent 50%);
         }
 
         .gold-text {
@@ -61,7 +75,7 @@
                 text-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
             }
             50% {
-                text-shadow: 0 0 60px rgba(212, 175, 55, 0.3), 0 0 120px rgba(212, 175, 55, 0.1);
+                text-shadow: 0 0 60px rgba(212, 175, 55, 0.25), 0 0 100px rgba(212, 175, 55, 0.08);
             }
         }
         .glow-anim {
@@ -74,7 +88,7 @@
                 transform: translateY(0px);
             }
             50% {
-                transform: translateY(-16px);
+                transform: translateY(-14px);
             }
         }
         .float-anim {
@@ -87,11 +101,11 @@
                 transform: translateY(0px) rotate(0deg);
             }
             50% {
-                transform: translateY(-10px) rotate(2deg);
+                transform: translateY(-8px) rotate(1deg);
             }
         }
         .float-slow {
-            animation: floatSlow 7s ease-in-out infinite;
+            animation: floatSlow 6s ease-in-out infinite;
         }
 
         @keyframes shimmerGold {
@@ -113,7 +127,7 @@
         @keyframes fadeUp {
             from {
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -124,11 +138,21 @@
         @keyframes scaleIn {
             from {
                 opacity: 0;
-                transform: scale(0.9);
+                transform: scale(0.92);
             }
             to {
                 opacity: 1;
                 transform: scale(1);
+            }
+        }
+
+        @keyframes softPulse {
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
             }
         }
 
@@ -140,14 +164,14 @@
             right: 0;
             z-index: 1000;
             padding: 14px 0;
-            background: rgba(5, 5, 5, 0.7);
-            backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.06);
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.05);
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
         header.scrolled {
-            background: rgba(5, 5, 5, 0.95);
-            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.8);
+            background: rgba(5, 5, 5, 0.92);
+            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.6);
         }
         .header-flex {
             display: flex;
@@ -183,7 +207,7 @@
             gap: 30px;
         }
         .nav-links a {
-            color: rgba(245, 240, 235, 0.6);
+            color: rgba(245, 240, 235, 0.5);
             text-decoration: none;
             font-size: 11px;
             font-weight: 400;
@@ -210,7 +234,7 @@
         }
         .nav-cta {
             background: transparent;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.25);
             color: #D4AF37;
             padding: 8px 28px;
             border-radius: 2px;
@@ -230,7 +254,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
             transition: left 0.6s ease;
         }
         .nav-cta:hover::before {
@@ -239,7 +263,7 @@
         .nav-cta:hover {
             background: #D4AF37;
             color: #050505;
-            box-shadow: 0 0 60px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.15);
             transform: scale(1.02);
         }
 
@@ -265,8 +289,8 @@
             align-items: center;
             gap: 24px;
             padding: 40px 20px 30px;
-            background: rgba(5, 5, 5, 0.98);
-            backdrop-filter: blur(24px);
+            background: rgba(5, 5, 5, 0.97);
+            backdrop-filter: blur(20px);
             width: 100%;
             border-bottom: 1px solid rgba(212, 175, 55, 0.04);
         }
@@ -293,8 +317,8 @@
             display: flex;
             align-items: center;
             padding: 160px 0 100px;
-            background: radial-gradient(ellipse at 15% 25%, rgba(212, 175, 55, 0.08), transparent 60%),
-                radial-gradient(ellipse at 85% 75%, rgba(212, 175, 55, 0.04), transparent 50%);
+            background: radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.06), transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(212, 175, 55, 0.03), transparent 50%);
             overflow: hidden;
         }
         .hero-content {
@@ -304,7 +328,7 @@
         }
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3.5rem, 9vw, 7rem);
+            font-size: clamp(3.2rem, 8vw, 6.5rem);
             font-weight: 700;
             line-height: 1;
             letter-spacing: -3px;
@@ -320,17 +344,18 @@
             animation: shimmerGold 5s ease-in-out infinite;
         }
         .hero .tagline {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-family: 'Playfair Display', serif;
             font-style: italic;
             color: #D4AF37;
             margin-top: -10px;
             animation: fadeUp 1s ease 0.5s both;
+            opacity: 0.8;
         }
         .hero p {
             font-size: 1.05rem;
             max-width: 480px;
-            color: rgba(168, 162, 158, 0.8);
+            color: rgba(168, 162, 158, 0.7);
             font-weight: 300;
             margin: 28px 0 44px;
             line-height: 1.9;
@@ -367,7 +392,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
             transition: left 0.6s ease;
         }
         .btn-primary:hover::before {
@@ -376,11 +401,11 @@
         .btn-primary:hover {
             background: #E8C84A;
             transform: translateY(-3px);
-            box-shadow: 0 16px 60px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 16px 50px rgba(212, 175, 55, 0.25);
         }
 
         .btn-secondary {
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.15);
             color: #F5F0EB;
             padding: 16px 44px;
             border-radius: 2px;
@@ -402,7 +427,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.04), transparent);
             transition: left 0.6s ease;
         }
         .btn-secondary:hover::before {
@@ -410,9 +435,9 @@
         }
         .btn-secondary:hover {
             border-color: #D4AF37;
-            background: rgba(212, 175, 55, 0.05);
+            background: rgba(212, 175, 55, 0.04);
             transform: translateY(-3px);
-            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.08);
+            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.06);
         }
 
         /* ===== FLOATING RINGS ===== */
@@ -440,7 +465,7 @@
             height: 70%;
             top: 15%;
             left: 15%;
-            border-color: rgba(212, 175, 55, 0.03);
+            border-color: rgba(212, 175, 55, 0.025);
             animation-duration: 35s;
             animation-direction: reverse;
         }
@@ -457,10 +482,10 @@
             height: 15%;
             top: 42.5%;
             left: 42.5%;
-            border-color: rgba(212, 175, 55, 0.15);
-            background: rgba(212, 175, 55, 0.03);
+            border-color: rgba(212, 175, 55, 0.1);
+            background: rgba(212, 175, 55, 0.02);
             animation-duration: 15s;
-            box-shadow: 0 0 80px rgba(212, 175, 55, 0.05);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.04);
         }
 
         /* ===== SECTIONS ===== */
@@ -477,18 +502,18 @@
             margin-bottom: 12px;
             font-weight: 400;
             display: block;
-            opacity: 0.7;
+            opacity: 0.6;
         }
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
             font-weight: 600;
             letter-spacing: -1px;
             line-height: 1.1;
             margin-bottom: 16px;
         }
         .section-sub {
-            color: rgba(168, 162, 158, 0.7);
+            color: rgba(168, 162, 158, 0.6);
             font-weight: 300;
             font-size: 1.05rem;
             max-width: 520px;
@@ -520,12 +545,12 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(212, 175, 55, 0.06);
+            background: rgba(255, 255, 255, 0.012);
+            border: 1px solid rgba(212, 175, 55, 0.04);
             border-radius: 16px;
             padding: 36px 28px;
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(4px);
             position: relative;
             overflow: hidden;
             animation: scaleIn 0.8s ease both;
@@ -539,9 +564,6 @@
         .card:nth-child(3) {
             animation-delay: 0.3s;
         }
-        .card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
         .card::before {
             content: '';
             position: absolute;
@@ -549,7 +571,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.04), transparent 70%);
+            background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.035), transparent 70%);
             opacity: 0;
             transition: opacity 0.6s ease;
             pointer-events: none;
@@ -558,10 +580,10 @@
             opacity: 1;
         }
         .card:hover {
-            transform: translateY(-12px);
-            border-color: rgba(212, 175, 55, 0.2);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(212, 175, 55, 0.03);
-            background: rgba(255, 255, 255, 0.025);
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4), 0 0 50px rgba(212, 175, 55, 0.02);
+            background: rgba(255, 255, 255, 0.02);
         }
         .card-icon {
             font-size: 32px;
@@ -570,7 +592,7 @@
             transition: transform 0.4s ease;
         }
         .card:hover .card-icon {
-            transform: scale(1.1) rotate(-5deg);
+            transform: scale(1.08) rotate(-3deg);
         }
         .card h3 {
             font-family: 'Playfair Display', serif;
@@ -587,31 +609,32 @@
         }
         .card .price small {
             font-size: 16px;
-            color: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.2);
             font-weight: 300;
             font-family: 'Inter', sans-serif;
         }
         .card p {
-            color: rgba(168, 162, 158, 0.7);
+            color: rgba(168, 162, 158, 0.6);
             font-size: 14px;
             font-weight: 300;
             line-height: 1.8;
             margin-bottom: 24px;
-            min-height: 48px;
+            min-height: 44px;
         }
         .card .btn-primary {
             width: 100%;
             text-align: center;
             padding: 14px;
             font-size: 11px;
+            letter-spacing: 1.5px;
         }
         .card-badge {
             position: absolute;
             top: 20px;
             right: 20px;
             font-size: 8px;
-            letter-spacing: 2px;
-            background: rgba(212, 175, 55, 0.1);
+            letter-spacing: 1.5px;
+            background: rgba(212, 175, 55, 0.08);
             color: #D4AF37;
             padding: 4px 16px;
             border-radius: 50px;
@@ -631,21 +654,21 @@
             margin-top: 40px;
         }
         .compare-item {
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(212, 175, 55, 0.06);
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(212, 175, 55, 0.04);
             border-radius: 12px;
             padding: 28px 24px;
             transition: all 0.4s ease;
         }
         .compare-item:hover {
-            border-color: rgba(212, 175, 55, 0.15);
-            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.12);
+            transform: translateY(-3px);
         }
         .compare-item .label {
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: rgba(168, 162, 158, 0.5);
+            color: rgba(168, 162, 158, 0.4);
             margin-bottom: 6px;
         }
         .compare-item .value {
@@ -656,12 +679,12 @@
         }
         .compare-item .value span {
             font-size: 16px;
-            color: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.2);
             font-weight: 300;
         }
         .compare-item .value .strike {
             text-decoration: line-through;
-            color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.15);
             font-size: 20px;
         }
 
@@ -674,7 +697,7 @@
         .service-tile {
             text-align: center;
             padding: 24px 16px;
-            border: 1px solid rgba(212, 175, 55, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.04);
             border-radius: 12px;
             transition: all 0.4s ease;
             cursor: pointer;
@@ -705,10 +728,10 @@
             animation-delay: 0.4s;
         }
         .service-tile:hover {
-            border-color: rgba(212, 175, 55, 0.15);
-            background: rgba(255, 255, 255, 0.015);
+            border-color: rgba(212, 175, 55, 0.12);
+            background: rgba(255, 255, 255, 0.01);
             transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
         }
         .service-tile i {
             font-size: 28px;
@@ -718,11 +741,11 @@
             transition: transform 0.4s ease;
         }
         .service-tile:hover i {
-            transform: scale(1.15) rotate(-5deg);
+            transform: scale(1.1) rotate(-4deg);
         }
         .service-tile span {
             font-size: 13px;
-            color: rgba(168, 162, 158, 0.7);
+            color: rgba(168, 162, 158, 0.6);
             font-weight: 300;
             letter-spacing: 0.5px;
         }
@@ -734,8 +757,8 @@
             gap: 20px;
         }
         .coming-item {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(212, 175, 55, 0.04);
+            background: rgba(255, 255, 255, 0.008);
+            border: 1px solid rgba(212, 175, 55, 0.03);
             border-radius: 12px;
             padding: 30px 20px;
             text-align: center;
@@ -755,20 +778,20 @@
             animation-delay: 0.4s;
         }
         .coming-item:hover {
-            border-color: rgba(212, 175, 55, 0.12);
-            background: rgba(255, 255, 255, 0.015);
-            transform: translateY(-6px);
+            border-color: rgba(212, 175, 55, 0.1);
+            background: rgba(255, 255, 255, 0.01);
+            transform: translateY(-5px);
         }
         .coming-item i {
             font-size: 30px;
             color: #D4AF37;
             margin-bottom: 14px;
             display: block;
-            opacity: 0.6;
+            opacity: 0.5;
             transition: transform 0.4s ease;
         }
         .coming-item:hover i {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
         .coming-item h4 {
             font-family: 'Playfair Display', serif;
@@ -780,7 +803,7 @@
             font-size: 9px;
             letter-spacing: 2px;
             color: #D4AF37;
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.1);
             padding: 4px 16px;
             border-radius: 50px;
             display: inline-block;
@@ -799,7 +822,7 @@
         .stat-item {
             text-align: center;
             padding: 30px 20px;
-            border: 1px solid rgba(212, 175, 55, 0.04);
+            border: 1px solid rgba(212, 175, 55, 0.03);
             border-radius: 12px;
             transition: all 0.5s ease;
             animation: scaleIn 0.8s ease both;
@@ -817,9 +840,9 @@
             animation-delay: 0.4s;
         }
         .stat-item:hover {
-            border-color: rgba(212, 175, 55, 0.12);
-            background: rgba(255, 255, 255, 0.01);
-            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.1);
+            background: rgba(255, 255, 255, 0.008);
+            transform: translateY(-3px);
         }
         .stat-number {
             font-family: 'Playfair Display', serif;
@@ -830,7 +853,7 @@
         }
         .stat-label {
             font-size: 12px;
-            color: rgba(168, 162, 158, 0.6);
+            color: rgba(168, 162, 158, 0.5);
             margin-top: 10px;
             font-weight: 300;
             letter-spacing: 0.5px;
@@ -840,7 +863,7 @@
         .booking-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 50px;
             margin-top: 20px;
         }
         .form-group {
@@ -851,16 +874,15 @@
             font-size: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: rgba(168, 162, 158, 0.5);
+            color: rgba(168, 162, 158, 0.4);
             margin-bottom: 6px;
         }
         .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-group select {
             width: 100%;
             padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(212, 175, 55, 0.06);
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(212, 175, 55, 0.05);
             border-radius: 8px;
             color: #F5F0EB;
             font-family: 'Inter', sans-serif;
@@ -869,14 +891,9 @@
             outline: none;
         }
         .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.03);
-        }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
+        .form-group select:focus {
+            border-color: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.02);
         }
         .form-group select option {
             background: #050505;
@@ -887,12 +904,12 @@
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 50px;
             margin-top: 20px;
         }
         .contact-item {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(212, 175, 55, 0.04);
+            background: rgba(255, 255, 255, 0.008);
+            border: 1px solid rgba(212, 175, 55, 0.03);
             border-radius: 12px;
             padding: 22px 28px;
             margin-bottom: 14px;
@@ -907,7 +924,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.03), transparent);
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.025), transparent);
             transition: left 0.6s ease;
             pointer-events: none;
         }
@@ -915,8 +932,8 @@
             left: 100%;
         }
         .contact-item:hover {
-            border-color: rgba(212, 175, 55, 0.15);
-            background: rgba(255, 255, 255, 0.015);
+            border-color: rgba(212, 175, 55, 0.1);
+            background: rgba(255, 255, 255, 0.01);
         }
         .contact-item strong {
             color: #D4AF37;
@@ -925,7 +942,7 @@
             text-transform: uppercase;
             display: block;
             font-weight: 500;
-            opacity: 0.7;
+            opacity: 0.6;
         }
         .contact-item span {
             font-size: 18px;
@@ -937,7 +954,7 @@
         .highlight-btn {
             display: inline-block;
             padding: 12px 32px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.15);
             border-radius: 50px;
             color: #F5F0EB;
             text-decoration: none;
@@ -959,7 +976,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.06), transparent);
             transition: left 0.6s ease;
         }
         .highlight-btn:hover::before {
@@ -967,15 +984,15 @@
         }
         .highlight-btn:hover {
             border-color: #D4AF37;
-            background: rgba(212, 175, 55, 0.05);
+            background: rgba(212, 175, 55, 0.04);
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.08);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.05);
         }
         .highlight-btn.active {
             border-color: #D4AF37;
-            background: rgba(212, 175, 55, 0.08);
+            background: rgba(212, 175, 55, 0.06);
             color: #D4AF37;
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.05);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.04);
         }
 
         .highlight-group {
@@ -988,8 +1005,8 @@
 
         /* ===== ONLY FOR ORDER ===== */
         .order-section {
-            background: rgba(212, 175, 55, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.06);
+            background: rgba(212, 175, 55, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.04);
             border-radius: 16px;
             padding: 40px;
             text-align: center;
@@ -1021,12 +1038,12 @@
             align-items: center;
             gap: 10px;
             padding: 12px 28px;
-            border: 1px solid rgba(212, 175, 55, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.04);
             border-radius: 50px;
             transition: all 0.4s ease;
         }
         .location-item:hover {
-            border-color: rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.12);
             background: rgba(255, 255, 255, 0.01);
             transform: translateY(-2px);
         }
@@ -1036,7 +1053,7 @@
         }
         .location-item span {
             font-size: 13px;
-            color: rgba(168, 162, 158, 0.7);
+            color: rgba(168, 162, 158, 0.6);
             font-weight: 300;
         }
 
@@ -1044,13 +1061,13 @@
         footer {
             background: #080808;
             padding: 50px 0 30px;
-            border-top: 1px solid rgba(212, 175, 55, 0.04);
+            border-top: 1px solid rgba(212, 175, 55, 0.03);
             margin-top: 20px;
             position: relative;
             z-index: 1;
         }
         footer p {
-            color: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.1);
             font-size: 12px;
             font-weight: 300;
             letter-spacing: 0.5px;
@@ -1148,6 +1165,7 @@
 </head>
 <body>
 
+    <div class="glow-overlay"></div>
     <canvas id="particles-canvas"></canvas>
 
     <!-- ===== HEADER ===== -->
@@ -1209,25 +1227,19 @@
                     <h3>WhatsApp Bot</h3>
                     <div class="price">₹4,999 <small>/mo</small></div>
                     <p>24/7 WhatsApp automation, instant replies, lead capture &amp; reminders.</p>
-                    <a href="#booking" class="btn-primary">Get Plan</a>
+                    <a href="#" class="btn-primary book-btn" data-service="WhatsApp Bot (Rental)"><i class="fas fa-whatsapp"></i> Get Plan</a>
                 </div>
                 <div class="card float-slow"><span class="card-icon"><i class="fas fa-comment-dots"></i></span>
                     <h3>AI Chatbot + Website</h3>
                     <div class="price">₹5,999 <small>/mo</small></div>
                     <p>Luxury website chatbot for bookings, queries, and guest engagement.</p>
-                    <a href="#booking" class="btn-primary">Get Plan</a>
+                    <a href="#" class="btn-primary book-btn" data-service="AI Chatbot + Website (Rental)"><i class="fas fa-whatsapp"></i> Get Plan</a>
                 </div>
                 <div class="card float-slow"><span class="card-icon"><i class="fas fa-phone-alt"></i></span>
                     <h3>AI Call Assistant</h3>
                     <div class="price">₹8,999 <small>/mo</small></div>
                     <p>Answer calls, qualify enquiries, and keep every guest heard.</p>
-                    <a href="#booking" class="btn-primary">Get Plan</a>
-                </div>
-                <div class="card float-slow" style="border-color:rgba(212,175,55,0.15);"><span class="card-badge gold"><i class="fas fa-star"></i> Best Value</span><span class="card-icon"><i class="fas fa-layer-group"></i></span>
-                    <h3>Full System</h3>
-                    <div class="price">₹8,999 <small>/mo</small></div>
-                    <p>Everything — WhatsApp Bot, AI Chatbot, Website &amp; Call Assistant.</p>
-                    <a href="#booking" class="btn-primary">Get Plan</a>
+                    <a href="#" class="btn-primary book-btn" data-service="AI Call Assistant (Rental)"><i class="fas fa-whatsapp"></i> Get Plan</a>
                 </div>
             </div>
         </div>
@@ -1247,25 +1259,25 @@
                     <h3>WhatsApp Bot</h3>
                     <div class="price">₹8,999</div>
                     <p>24/7 WhatsApp automation, instant replies, lead capture &amp; reminders.</p>
-                    <a href="#booking" class="btn-primary">Buy Now</a>
+                    <a href="#" class="btn-primary book-btn" data-service="WhatsApp Bot (Sale)"><i class="fas fa-whatsapp"></i> Buy Now</a>
                 </div>
                 <div class="card"><span class="card-icon"><i class="fas fa-comment-dots"></i></span>
                     <h3>AI Bot + Web + WhatsApp</h3>
                     <div class="price">₹11,999</div>
                     <p>AI Chatbot + Professional Website + WhatsApp Automation.</p>
-                    <a href="#booking" class="btn-primary">Buy Now</a>
+                    <a href="#" class="btn-primary book-btn" data-service="AI Bot + Web + WhatsApp (Sale)"><i class="fas fa-whatsapp"></i> Buy Now</a>
                 </div>
                 <div class="card"><span class="card-icon"><i class="fas fa-globe"></i></span>
                     <h3>Luxury Website</h3>
                     <div class="price">₹13,999</div>
                     <p>Polished digital front desk designed to convert discerning guests.</p>
-                    <a href="#booking" class="btn-primary">Buy Now</a>
+                    <a href="#" class="btn-primary book-btn" data-service="Luxury Website (Sale)"><i class="fas fa-whatsapp"></i> Buy Now</a>
                 </div>
                 <div class="card"><span class="card-icon"><i class="fas fa-phone-alt"></i></span>
                     <h3>AI Call Assistant</h3>
                     <div class="price">₹14,999</div>
                     <p>Answer calls, qualify enquiries, and keep every guest heard.</p>
-                    <a href="#booking" class="btn-primary">Buy Now</a>
+                    <a href="#" class="btn-primary book-btn" data-service="AI Call Assistant (Sale)"><i class="fas fa-whatsapp"></i> Buy Now</a>
                 </div>
             </div>
         </div>
@@ -1285,19 +1297,19 @@
                     <h3>Basic</h3>
                     <div class="price">₹13,000</div>
                     <p>Basic Website + WhatsApp Chat Bot</p>
-                    <a href="#booking" class="btn-primary">Get Plan</a>
+                    <a href="#" class="btn-primary book-btn" data-service="Basic Package"><i class="fas fa-whatsapp"></i> Get Plan</a>
                 </div>
                 <div class="card"><span class="card-badge gold">Popular</span><span class="card-icon"><i class="fas fa-fire"></i></span>
                     <h3>Pro</h3>
                     <div class="price">₹18,000</div>
                     <p>Professional Website + WhatsApp Bot + Chat &amp; Reply + Booking + Call Assistant</p>
-                    <a href="#booking" class="btn-primary">Get Plan</a>
+                    <a href="#" class="btn-primary book-btn" data-service="Pro Package"><i class="fas fa-whatsapp"></i> Get Plan</a>
                 </div>
                 <div class="card"><span class="card-badge gold"><i class="fas fa-crown"></i> Premium</span><span class="card-icon"><i class="fas fa-gem"></i></span>
                     <h3>Premium</h3>
                     <div class="price">₹24,999</div>
                     <p>Luxury Website + Call Assistant + WhatsApp Assistant + Booking + Reminder + Fully Receptionist + Call Attend + WhatsApp Booking</p>
-                    <a href="#booking" class="btn-primary">Get Plan</a>
+                    <a href="#" class="btn-primary book-btn" data-service="Premium Package"><i class="fas fa-whatsapp"></i> Get Plan</a>
                 </div>
             </div>
             <!-- Compare -->
@@ -1306,7 +1318,7 @@
                     <div class="label">Market Price</div>
                     <div class="value"><span class="strike">₹60,000+</span></div>
                 </div>
-                <div class="compare-item" style="border-color:rgba(212,175,55,0.15);">
+                <div class="compare-item" style="border-color:rgba(212,175,55,0.1);">
                     <div class="label">Novaux Price</div>
                     <div class="value">₹26,999 <span>you save 60%</span></div>
                 </div>
@@ -1364,7 +1376,7 @@
             <div class="order-section">
                 <i class="fas fa-shopping-cart"></i>
                 <h3>Only For <span class="gold-text">Order</span> — Shop App</h3>
-                <p style="color:rgba(168,162,158,0.7); max-width:500px; margin:12px auto 0;">Get your own branded shop app with AI automation. Built exclusively for Novaux clients.</p>
+                <p style="color:rgba(168,162,158,0.6); max-width:500px; margin:12px auto 0;">Get your own branded shop app with AI automation. Built exclusively for Novaux clients.</p>
                 <a href="#booking" class="btn-primary" style="margin-top:20px;"><i class="fas fa-store"></i> Get Your App</a>
             </div>
         </div>
@@ -1424,7 +1436,6 @@
                             <option>WhatsApp Bot (Rental)</option>
                             <option>AI Chatbot + Website (Rental)</option>
                             <option>AI Call Assistant (Rental)</option>
-                            <option>Full System (Rental)</option>
                             <option>WhatsApp Bot (Sale)</option>
                             <option>AI Bot + Web + WhatsApp (Sale)</option>
                             <option>Luxury Website (Sale)</option>
@@ -1460,13 +1471,13 @@
                     <div class="contact-item"><strong><i class="fas fa-envelope"></i> Email</strong><span>thenovaux03@gmail.com</span></div>
                 </div>
                 <div>
-                    <div class="contact-item" style="border-color:rgba(212,175,55,0.12);"><strong><i class="fas fa-map-marker-alt"></i> Location</strong><span>India</span></div>
-                    <div class="contact-item" style="border-color:rgba(212,175,55,0.12);"><strong><i class="fas fa-clock"></i> Support</strong><span>24/7 Available</span></div>
+                    <div class="contact-item" style="border-color:rgba(212,175,55,0.08);"><strong><i class="fas fa-map-marker-alt"></i> Location</strong><span>India</span></div>
+                    <div class="contact-item" style="border-color:rgba(212,175,55,0.08);"><strong><i class="fas fa-clock"></i> Support</strong><span>24/7 Available</span></div>
                 </div>
             </div>
             <!-- Animated Highlight Buttons -->
             <div style="text-align:center; margin-top:30px;">
-                <p style="font-size:11px; letter-spacing:2px; color:rgba(168,162,158,0.5); margin-bottom:12px;">Quick Actions</p>
+                <p style="font-size:11px; letter-spacing:2px; color:rgba(168,162,158,0.4); margin-bottom:12px;">Quick Actions</p>
                 <div class="highlight-group">
                     <button class="highlight-btn active" data-service="WhatsApp Bot (Rental)"><i class="fas fa-robot"></i> WhatsApp Bot</button>
                     <button class="highlight-btn" data-service="AI Chatbot + Website (Rental)"><i class="fas fa-comment-dots"></i> AI Chatbot</button>
@@ -1481,7 +1492,7 @@
     <footer>
         <div class="container text-center">
             <p>© 2026 <span style="color:#D4AF37;">Novaux AI</span>. All rights reserved.</p>
-            <p style="margin-top:6px;font-size:11px;color:rgba(255,255,255,0.08);">Phone: +91 86240 08237 · Email: thenovaux03@gmail.com</p>
+            <p style="margin-top:6px;font-size:11px;color:rgba(255,255,255,0.06);">Phone: +91 86240 08237 · Email: thenovaux03@gmail.com</p>
         </div>
     </footer>
 
@@ -1491,7 +1502,7 @@
             const canvas = document.getElementById('particles-canvas');
             const ctx = canvas.getContext('2d');
             let w, h, particles = [];
-            const count = window.innerWidth < 700 ? 40 : 80;
+            const count = window.innerWidth < 700 ? 50 : 90;
 
             function resize() {
                 w = canvas.width = window.innerWidth;
@@ -1504,22 +1515,24 @@
                 particles.push({
                     x: Math.random() * w,
                     y: Math.random() * h,
-                    r: Math.random() * 2.5 + 0.5,
-                    vx: (Math.random() - 0.5) * 0.3,
-                    vy: (Math.random() - 0.5) * 0.3,
-                    o: Math.random() * 0.4 + 0.05,
-                    pulse: Math.random() * Math.PI * 2
+                    r: Math.random() * 2.8 + 0.4,
+                    vx: (Math.random() - 0.5) * 0.25,
+                    vy: (Math.random() - 0.5) * 0.25,
+                    o: Math.random() * 0.35 + 0.04,
+                    pulse: Math.random() * Math.PI * 2,
+                    speed: 0.015 + Math.random() * 0.025
                 });
             }
 
             function draw() {
                 ctx.clearRect(0, 0, w, h);
                 for (const p of particles) {
-                    p.pulse += 0.02;
-                    const radius = p.r + Math.sin(p.pulse) * 0.3;
+                    p.pulse += p.speed;
+                    const radius = p.r + Math.sin(p.pulse) * 0.5;
+                    const opacity = p.o + Math.sin(p.pulse) * 0.06;
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(212, 175, 55, ${p.o + Math.sin(p.pulse) * 0.05})`;
+                    ctx.fillStyle = `rgba(212, 175, 55, ${Math.max(0.02, opacity)})`;
                     ctx.fill();
                     p.x += p.vx;
                     p.y += p.vy;
@@ -1596,6 +1609,19 @@
                     window.open(url, '_blank');
                 });
             }
+
+            // ===== ALL "Get Plan" / "Buy Now" BUTTONS =====
+            document.querySelectorAll('.book-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const service = this.dataset.service || 'Service';
+                    const msg =
+                        `🌟 *Novaux Concierge Inquiry* 🌟%0A%0A💼 *Interested in:* ${service}%0A%0A📅 *Please contact me for more details.*`;
+
+                    const url = `https://wa.me/918624008237?text=${msg}`;
+                    window.open(url, '_blank');
+                });
+            });
         })();
     </script>
 
